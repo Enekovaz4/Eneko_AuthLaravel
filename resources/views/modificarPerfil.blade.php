@@ -4,7 +4,7 @@
 	@csrf
 	<label>Usuario</label><br><input type="" name="usuario" value="{{Auth::user()->name}}"><br><br>
 	<label>Correo</label><br><input type="" name="correo" value="{{Auth::user()->email}}"><br><br>
-	<label>Contraseña</label><br><input type="" name="pass" value="{{Auth::user()->id}}" required=""><br><br>
+	<label>Contraseña</label><br><input type="text" name="pass" value="" required=""><br><br>
 
 	<input type="submit" name="submit"><br><br>
 	

@@ -20,11 +20,16 @@ class PerfilController extends Controller
 
     	$usuario->name = $_POST['usuario'];
     	$usuario->email = $_POST['correo'];
-    	$usuario->password = $_POST['pass'];
+
+    	$usuario->password = encrypt($_POST['pass']);
 
     	$usuario->save();
 
-   		$this->mostrar();
+    	$user = Auth::user();
+
+    	Auth::login($user);
+
+   		return view ('ud6');
     }
 
 }
