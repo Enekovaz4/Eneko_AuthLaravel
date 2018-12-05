@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary id="mainNavbar">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" id="mainNavbar">
 
     <a class="navbar-brand" href="#">AUTH</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
@@ -10,11 +10,23 @@
         <div class="collapse navbar-collapse" id="navbar">
 
             <ul class="navbar-nav mr-auto">
+                @if (Auth::user())
                 <li id="initial" class="nav-item">
                     <a class="nav-link" href="#inicio">
                         Inicio
                     </a>
                 </li>
+                <li id="initial" class="nav-item">
+                    <a class="nav-link" href="#inicio">
+                        Modificar Perfil
+                    </a>
+                </li>
+                <li id="initial" class="nav-item">
+                    <a class="nav-link" href="/mensajes">
+                        Mensajes
+                    </a>
+                </li>
+                @endif
             </ul>
 
             <ul class="navbar-nav navbar-right ">
@@ -27,19 +39,33 @@
                         <a class="dropdown-item" href="#">Euskara</a>
                         <a class="dropdown-item active" href="#">Castellano</a>
                       </div>
+                    @if (Auth::user() == null)
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
+                        <a class="nav-link" href="/login">
                             <i class="fa fa-sign-in"></i>
                             Login
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">
+                        <a class="nav-link" href="/register">
                             <i class="fa fa-user-plus"></i>
                             Registro
                         </a>
                     </li>
+                    @endif
+                    @if (Auth::user())
+                    <li class="nav-item dropdown active">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-flag"></i>
+                        {{ Auth::user()->name }}
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/modificarPerfil">Perfil</a>
+                        <a class="dropdown-item active" href="/logout">LogOut</a>
+                      </div>
+                    </li>
+                    @endif
             </ul>
         </div>
     </div>
